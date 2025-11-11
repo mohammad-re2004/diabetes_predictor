@@ -100,7 +100,6 @@ class _PredictionScreenState extends State<PredictionScreen> {
       child: Form(
         key: _formKey,
         child: ListView(
-          physics: const BouncingScrollPhysics(),
           children: [
             const SizedBox(height: 12),
             InputField(
