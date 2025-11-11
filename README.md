@@ -26,11 +26,10 @@ A simple **Diabetes Risk Predictor** mobile app built with **Flutter** that uses
 
 
 ## Screenshots
+<img src="./assets/sc1.png" alt="Home Screen" width="300"/>
+<img src="./assets/sc2.png" alt="Home Screen" width="300"/>
+<img src="./assets/sc3.png" alt="Home Screen" width="300"/>
 
-*Optional: add screenshots here if needed*
-![App Screenshot](assets/sc1.png)
-![App Screenshot](assets/sc2.png)
-![App Screenshot](assets/sc3.png)
 
 ---
 
@@ -39,7 +38,7 @@ A simple **Diabetes Risk Predictor** mobile app built with **Flutter** that uses
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/diabetes-risk-predictor.git
+git clone https://github.com/mohammad-re2004/diabetes_predictor.git
 ```
 
 2. Navigate to the project folder:
