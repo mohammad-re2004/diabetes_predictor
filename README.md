@@ -26,9 +26,7 @@ A simple **Diabetes Risk Predictor** mobile app built with **Flutter** that uses
 
 ## Demo
 
-![App Demo](assets/demo.gif)
 ![App Demo](assets/2.gif)
-*Animated GIF showing input fields, prediction, and gauge visualization.*
 
 ---
 
