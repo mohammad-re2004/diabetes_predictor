@@ -79,7 +79,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       backgroundColor: const Color(0xFFF7F9FC),
       appBar: AppBar(
         title: const Text(
-          'بررسی خطر دیابت',
+          'ارزیابی احتمال دیابت',
           style: TextStyle(fontFamily: "SB", fontSize: 20),
         ),
         centerTitle: true,
