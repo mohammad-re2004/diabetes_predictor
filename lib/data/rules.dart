@@ -1,47 +1,44 @@
-class RuleResult {
+class DiabetesResult {
   final int prediction;
   final String rule;
+  final double riskLevel;
 
-  RuleResult(this.prediction, this.rule);
+  DiabetesResult(this.prediction, this.rule, this.riskLevel);
 }
 
-RuleResult classifyDiabetes({
+DiabetesResult classifyDiabetes({
   required int age,
   required double glucose,
   required double bmi,
   required double dpf,
 }) {
-  // --- Rules for 1.0 ---
-  if (glucose > 101 && glucose <= 154 && bmi > 43.3 && age > 29) {
-    return RuleResult(1, "Rule 1 for 1.0 → Glucose>101 ≤154, BMI>43.3, Age>29");
-  }
+  //
   if (glucose > 154) {
-    return RuleResult(1, "Rule 2 for 1.0 → Glucose>154");
+    return DiabetesResult(1, "Rule 2 → Glucose > 154", 0.9);
   }
-  if (glucose > 101 && bmi > 26.7 && dpf > 0.464 && age > 29) {
-    return RuleResult(
+  if (glucose > 101 && glucose <= 154 && bmi > 43.3 && age > 29) {
+    return DiabetesResult(
       1,
-      "Rule 3 for 1.0 → Glucose>101, BMI>26.7, DPF>0.464, Age>29",
+      "Rule 1 → Glucose>101 ≤154, BMI>43.3, Age>29",
+      0.8,
     );
   }
 
-  // --- Rules for 0.0 ---
-  if (glucose <= 154 && bmi <= 26.7) {
-    return RuleResult(0, "Rule 1 for 0.0 → Glucose≤154, BMI≤26.7");
-  }
-  if (glucose <= 101) {
-    return RuleResult(0, "Rule 2 for 0.0 → Glucose≤101");
-  }
-  if (glucose <= 154 && age <= 29) {
-    return RuleResult(0, "Rule 3 for 0.0 → Glucose≤154, Age≤29");
-  }
-  if (dpf > 0.287 && dpf <= 0.307) {
-    return RuleResult(0, "Rule 4 for 0.0 → 0.287<DPF≤0.307");
-  }
-  if (glucose <= 154 && bmi <= 43.3 && dpf <= 0.464) {
-    return RuleResult(0, "Rule 5 for 0.0 → Glucose≤154, BMI≤43.3, DPF≤0.464");
+  //
+  if (glucose > 101 && bmi > 26.7 && dpf > 0.464 && age > 29) {
+    return DiabetesResult(2, "Moderate Risk → Rule 3 for 1.0", 0.5);
   }
 
-  // Default
-  return RuleResult(0, "Default: No matching rule (→ 0)");
+  //
+  if (glucose <= 101) {
+    return DiabetesResult(0, "Rule 2 for 0.0 → Glucose ≤101", 0.2);
+  }
+  if (glucose <= 154 && age <= 29) {
+    return DiabetesResult(0, "Rule 3 for 0.0 → Glucose ≤154, Age ≤29", 0.25);
+  }
+  if (glucose <= 154 && bmi <= 26.7) {
+    return DiabetesResult(0, "Rule 1 for 0.0 → Glucose ≤154, BMI ≤26.7", 0.3);
+  }
+
+  return DiabetesResult(0, "Default → No matching rule", 0.3);
 }

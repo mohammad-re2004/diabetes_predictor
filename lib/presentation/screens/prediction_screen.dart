@@ -17,9 +17,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
   final _glucoseController = TextEditingController();
   final _bmiController = TextEditingController();
   final _dpfController = TextEditingController();
+  final _heightController = TextEditingController();
+  final _weightController = TextEditingController();
 
   bool _isPredicting = false;
-  int? _prediction; // 0 or 1
+  DiabetesResult? _prediction;
 
   void _predict() {
     if (!_formKey.currentState!.validate()) return;
@@ -32,15 +34,20 @@ class _PredictionScreenState extends State<PredictionScreen> {
     Future.delayed(const Duration(milliseconds: 600), () {
       final age = int.tryParse(_ageController.text.trim());
       final glucose = double.tryParse(_glucoseController.text.trim());
-      final bmi = double.tryParse(_bmiController.text.trim());
+      final height = double.tryParse(_heightController.text.trim());
+      final weight = double.tryParse(_weightController.text.trim());
       final dpf = double.tryParse(_dpfController.text.trim());
 
-      if (age == null || glucose == null || bmi == null || dpf == null) {
+      if (age == null ||
+          glucose == null ||
+          height == null ||
+          weight == null ||
+          dpf == null) {
         _showError("Please enter valid numbers.");
         setState(() => _isPredicting = false);
         return;
       }
-
+      final bmi = weight / ((height / 100) * (height / 100));
       final result = classifyDiabetes(
         age: age,
         glucose: glucose,
@@ -49,7 +56,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       );
 
       setState(() {
-        _prediction = result.prediction; // 0 or 1
+        _prediction = _prediction = result;
         _isPredicting = false;
       });
     });
@@ -72,7 +79,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       backgroundColor: const Color(0xFFF7F9FC),
       appBar: AppBar(
         title: const Text(
-          'Diabetes Predictor🩺',
+          'Diabetes Predictor',
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
@@ -100,13 +107,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
       child: Form(
         key: _formKey,
         child: ListView(
-          physics: const BouncingScrollPhysics(),
           children: [
             const SizedBox(height: 12),
             InputField(
               controller: _ageController,
               label: 'Age',
-              hint: '10 – 80',
+              hint: ' 10 – 80',
             ),
             InputField(
               controller: _glucoseController,
@@ -114,9 +120,14 @@ class _PredictionScreenState extends State<PredictionScreen> {
               hint: '60 – 200',
             ),
             InputField(
-              controller: _bmiController,
-              label: 'BMI',
-              hint: '15 – 50',
+              controller: _heightController,
+              label: 'Height (cm)',
+              hint: '100 – 220',
+            ),
+            InputField(
+              controller: _weightController,
+              label: 'Weight (kg)',
+              hint: '30 – 150',
             ),
             InputField(
               controller: _dpfController,
@@ -159,22 +170,20 @@ class _PredictionScreenState extends State<PredictionScreen> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Expanded(
-            child: ResultCard(riskLevel: _prediction! == 1 ? 0.85 : 0.15),
-          ),
+          Expanded(child: ResultCard(result: _prediction!)),
           const SizedBox(height: 16),
-          ElevatedButton.icon(
+          ElevatedButton(
             onPressed: () {
               setState(() {
                 _prediction = null;
                 _ageController.clear();
                 _glucoseController.clear();
-                _bmiController.clear();
+                _heightController.clear();
+                _weightController.clear();
                 _dpfController.clear();
               });
             },
-            icon: const Icon(Icons.arrow_back),
-            label: const Text('Predict Again'),
+            child: Text('Predict Again'),
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF4361EE),
               foregroundColor: Colors.white,
