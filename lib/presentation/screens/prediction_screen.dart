@@ -15,7 +15,6 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
   final _ageController = TextEditingController();
   final _glucoseController = TextEditingController();
-  final _bmiController = TextEditingController();
   final _dpfController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
