@@ -10,11 +10,13 @@ A simple **Diabetes Risk Predictor** mobile app built with **Flutter** that uses
 
   * Age
   * Glucose
-  * BMI (Body Mass Index)
+  * Weight (kg)
+  * Height (cm)
   * Diabetes Pedigree Function (DPF)
 * **Interactive Gauge** showing risk level visually:
 
   * Low Risk (Green)
+  * Moderate Risk (Orange)
   * High Risk (Red)
 * Percentage and label below the Gauge update dynamically with the result.
 * Supports **Light & Dark Mode** based on the user’s device theme.
@@ -28,6 +30,7 @@ A simple **Diabetes Risk Predictor** mobile app built with **Flutter** that uses
 <img src="./assets/sc1.png" alt="Home Screen" width="300"/>
 <img src="./assets/sc2.png" alt="Home Screen" width="300"/>
 <img src="./assets/sc3.png" alt="Home Screen" width="300"/>
+<img src="./assets/sc4.png" alt="Home Screen" width="300"/>
 
 
 ---
@@ -69,12 +72,13 @@ flutter run
 
 ---
 
-## Example Test Values
+## Sample Test Data🔬
 
-| Risk Level | Age | Glucose | BMI | DPF |
-| ---------- | --- | ------- | --- | --- |
-| Low        | 25  | 90      | 22  | 0.2 |
-| High       | 50  | 160     | 45  | 0.6 |
+| Risk Level | Age | Glucose | Height (cm) | Weight (kg) | DPF |
+|-------------|-----|----------|--------------|--------------|-----|
+| 🟢 Low      | 25  | 90       | 175          | 68           | 0.2 |
+| 🟠 Moderate | 40  | 130      | 170          | 78           | 0.8 |
+| 🔴 High     | 50  | 160      | 165          | 95           | 0.6 |
 
 ---
 
@@ -95,4 +99,4 @@ Always consult a **healthcare professional** for real health assessments.
 
 ## License
 
-MIT License © Your Name
+MIT License © mohammadreza ebadi

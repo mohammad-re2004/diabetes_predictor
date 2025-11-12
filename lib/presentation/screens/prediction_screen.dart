@@ -79,8 +79,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
       backgroundColor: const Color(0xFFF7F9FC),
       appBar: AppBar(
         title: const Text(
-          'Diabetes Predictor',
-          style: TextStyle(fontWeight: FontWeight.w600),
+          'بررسی خطر دیابت',
+          style: TextStyle(fontFamily: "SB", fontSize: 20),
         ),
         centerTitle: true,
         elevation: 0,
@@ -111,27 +111,27 @@ class _PredictionScreenState extends State<PredictionScreen> {
             const SizedBox(height: 12),
             InputField(
               controller: _ageController,
-              label: 'Age',
+              label: '(age) سن',
               hint: ' 10 – 80',
             ),
             InputField(
               controller: _glucoseController,
-              label: 'Glucose',
+              label: ' (Glucose level) سطح گلوکز خون',
               hint: '60 – 200',
             ),
             InputField(
               controller: _heightController,
-              label: 'Height (cm)',
-              hint: '100 – 220',
+              label: '(cm) قد ',
+              hint: '50 – 220',
             ),
             InputField(
               controller: _weightController,
-              label: 'Weight (kg)',
+              label: '(kg) وزن',
               hint: '30 – 150',
             ),
             InputField(
               controller: _dpfController,
-              label: 'Diabetes Pedigree Function',
+              label: '(DPF) شاخص سابقه خانوادگی',
               hint: '0.1 – 2.5',
             ),
             const SizedBox(height: 32),
@@ -149,11 +149,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 child: _isPredicting
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const Text(
-                        'Predict',
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        'برسی',
+                        style: TextStyle(fontSize: 17, fontFamily: "SM"),
                       ),
               ),
             ),
@@ -172,23 +169,30 @@ class _PredictionScreenState extends State<PredictionScreen> {
         children: [
           Expanded(child: ResultCard(result: _prediction!)),
           const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                _prediction = null;
-                _ageController.clear();
-                _glucoseController.clear();
-                _heightController.clear();
-                _weightController.clear();
-                _dpfController.clear();
-              });
-            },
-            child: Text('Predict Again'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF4361EE),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
+          SizedBox(
+            width: 300,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _prediction = null;
+                  _ageController.clear();
+                  _glucoseController.clear();
+                  _heightController.clear();
+                  _weightController.clear();
+                  _dpfController.clear();
+                });
+              },
+              child: Text(
+                'تست مجدد',
+                style: TextStyle(fontSize: 16, fontFamily: "SM"),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4361EE),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
             ),
           ),

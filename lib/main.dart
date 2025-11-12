@@ -10,6 +10,6 @@ class DiabetesPredictorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(themeMode: ThemeMode.system, home: PredictionScreen());
+    return MaterialApp(home: PredictionScreen());
   }
 }

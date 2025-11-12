@@ -17,16 +17,18 @@ class InputField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
+        style: TextStyle(fontFamily: "GR"),
         controller: controller,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         validator: (value) {
-          if (value == null || value.isEmpty) return 'Required';
+          if (value == null || value.isEmpty) return 'ورود اطلاعات الزامی است';
           final num = double.tryParse(value.replaceAll(',', '.'));
-          if (num == null || num <= 0) return 'Invalid number';
+          if (num == null || num <= 0) return 'مقدار وارد شده معتبر نیست';
           return null;
         },
         decoration: InputDecoration(
           labelText: label,
+          labelStyle: TextStyle(fontFamily: "SM"),
           hintText: hint,
           filled: true,
           fillColor: Colors.white,

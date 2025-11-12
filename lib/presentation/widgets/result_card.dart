@@ -16,16 +16,16 @@ class ResultCard extends StatelessWidget {
     }
 
     String getLabel(double riskLevel) {
-      if (riskLevel < 0.4) return "Low Risk";
-      if (riskLevel < 0.7) return "Medium Risk";
-      return "High Risk";
+      if (riskLevel < 0.4) return "خطر پایین";
+      if (riskLevel < 0.7) return "خطر متوسط";
+      return "خطر بالا";
     }
 
     final color = getColor(result.riskLevel);
     final label = getLabel(result.riskLevel);
 
     return Card(
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(18),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 6,
       child: Padding(
@@ -34,8 +34,8 @@ class ResultCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              "Diabetes Risk Level",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              "سطح خطر ابتلا به دیابت",
+              style: TextStyle(fontSize: 20, fontFamily: "SM"),
             ),
             const SizedBox(height: 24),
 
@@ -97,22 +97,20 @@ class ResultCard extends StatelessWidget {
             const SizedBox(height: 16),
 
             Text(
-              "${(result.riskLevel * 100).round()}% Risk",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: color,
-              ),
+              "${(result.riskLevel * 100).round()}% احتمال ابتلا",
+              style: TextStyle(fontSize: 28, fontFamily: "SB", color: color),
             ),
             const SizedBox(height: 4),
 
             Text(
               label,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: color,
-              ),
+              style: TextStyle(fontSize: 18, fontFamily: "SM", color: color),
+            ),
+            SizedBox(height: 55),
+            Text(
+              "این پیش‌ بینی صرفاً یک ارزیابی اولیه است و نباید جایگزین مشاوره پزشکی حرفه‌ای شود ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15, fontFamily: "SM"),
             ),
           ],
         ),
