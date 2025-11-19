@@ -21,7 +21,7 @@ class InputField extends StatelessWidget {
         controller: controller,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         validator: (value) {
-          if (value == null || value.isEmpty) return 'ورود اطلاعات الزامی است';
+          if (value == null) return 'ورود اطلاعات الزامی است';
           final num = double.tryParse(value.replaceAll(',', '.'));
           if (num == null || num <= 0) return 'مقدار وارد شده معتبر نیست';
           return null;
